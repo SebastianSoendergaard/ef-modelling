@@ -1,5 +1,8 @@
-﻿namespace DataAccess.UserGroup
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace DataAccess.UserGroup
 {
+    [Table("3layer.user_groups")]
     public class UserGroup
     {
         public Guid Id { get; set; }

@@ -1,5 +1,8 @@
-﻿namespace DataAccess.User
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace DataAccess.User
 {
+    [Table("3layer.user_registrations")]
     public class UserRegistration
     {
         public Guid Id { get; init; }

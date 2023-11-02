@@ -12,7 +12,7 @@ namespace DataAccess.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "UserGroups",
+                name: "3layer.user_groups",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
@@ -21,11 +21,11 @@ namespace DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserGroups", x => x.Id);
+                    table.PrimaryKey("PK_3layer.user_groups", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserRegistrations",
+                name: "3layer.user_registrations",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
@@ -37,11 +37,11 @@ namespace DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserRegistrations", x => x.Id);
+                    table.PrimaryKey("PK_3layer.user_registrations", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Users",
+                name: "3layer.users",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
@@ -52,11 +52,11 @@ namespace DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.Id);
+                    table.PrimaryKey("PK_3layer.users", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "UserGroupMember",
+                name: "3layer.user_group_members",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
@@ -65,17 +65,17 @@ namespace DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_UserGroupMember", x => x.Id);
+                    table.PrimaryKey("PK_3layer.user_group_members", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_UserGroupMember_UserGroups_UserGroupId",
+                        name: "FK_3layer.user_group_members_3layer.user_groups_UserGroupId",
                         column: x => x.UserGroupId,
-                        principalTable: "UserGroups",
+                        principalTable: "3layer.user_groups",
                         principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserGroupMember_UserGroupId",
-                table: "UserGroupMember",
+                name: "IX_3layer.user_group_members_UserGroupId",
+                table: "3layer.user_group_members",
                 column: "UserGroupId");
         }
 
@@ -83,16 +83,16 @@ namespace DataAccess.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "UserGroupMember");
+                name: "3layer.user_group_members");
 
             migrationBuilder.DropTable(
-                name: "UserRegistrations");
+                name: "3layer.user_registrations");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "3layer.users");
 
             migrationBuilder.DropTable(
-                name: "UserGroups");
+                name: "3layer.user_groups");
         }
     }
 }
