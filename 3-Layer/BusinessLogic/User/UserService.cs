@@ -1,18 +1,20 @@
-﻿using DataAccess;
+﻿using DataAccess.User;
 using System.Text.RegularExpressions;
 
-namespace BusinessLogic
+namespace BusinessLogic.User
 {
-    public class UserRegistrationService
+    public class UserService
     {
         private static string _passwordPattern = @"^(?=.*[0-9])(?=.*[a-zæøå])(.{8,})$";
         private static Regex _passwordValidator = new Regex(_passwordPattern, RegexOptions.IgnoreCase);
 
-        private readonly IUserRegistrationRepository _repository;
+        private readonly IUserRegistrationRepository _userRegistrationRepository;
+        private readonly IUserRepository _userRepository;
 
-        public UserRegistrationService(IUserRegistrationRepository repository)
+        public UserService(IUserRegistrationRepository repository, IUserRepository userRepository)
         {
-            _repository = repository;
+            _userRegistrationRepository = repository;
+            _userRepository = userRepository;
         }
 
         public string CreateUserRegistration(string emailAddress, string password, string? firstName, string? lastName)
@@ -32,7 +34,6 @@ namespace BusinessLogic
             // Create user registration
             var userRegistration = new UserRegistration
             {
-                Id = Guid.NewGuid(),
                 EmailAddress = emailAddress,
                 Password = password,
                 FirstName = firstName,
@@ -40,19 +41,19 @@ namespace BusinessLogic
                 UserRegistrationStatus = UserRegistrationStatus.WaitingForConfirmation
             };
 
-            _repository.Add(userRegistration);
+            _userRegistrationRepository.Add(userRegistration);
 
             return $"UR{userRegistration.Id:N}".ToUpper();
         }
 
-        public void ConfirmUserRegistration(string id)
+        public string ConfirmUserRegistration(string userRegistrationId)
         {
-            if (!id.StartsWith("UR") || !Guid.TryParse(id.AsSpan(2), out var idAsGuid))
+            if (!userRegistrationId.StartsWith("UR") || !Guid.TryParse(userRegistrationId.AsSpan(2), out var idAsGuid))
             {
-                throw new ArgumentException($"'{nameof(id)}' is not valid, must be a UUID prefixed with UR.", nameof(id));
+                throw new ArgumentException($"'{nameof(userRegistrationId)}' is not valid, must be a UUID prefixed with UR.", nameof(userRegistrationId));
             }
 
-            var userRegistration = _repository.GetById(idAsGuid);
+            var userRegistration = _userRegistrationRepository.GetById(idAsGuid);
 
             if (userRegistration.UserRegistrationStatus == UserRegistrationStatus.Expired)
             {
@@ -63,8 +64,25 @@ namespace BusinessLogic
             {
                 userRegistration.UserRegistrationStatus = UserRegistrationStatus.Confirmed;
 
-                _repository.Update(userRegistration);
+                _userRegistrationRepository.Update(userRegistration);
             }
+
+            return CreateUser(userRegistration);
+        }
+
+        private string CreateUser(UserRegistration userRegistration)
+        {
+            var user = new DataAccess.User.User
+            {
+                EmailAddress = userRegistration.EmailAddress,
+                Password = userRegistration.Password,
+                FirstName = userRegistration.FirstName,
+                LastName = userRegistration.LastName
+            };
+
+            _userRepository.Add(user);
+
+            return $"U{user.Id:N}".ToUpper();
         }
     }
 }

@@ -1,17 +1,26 @@
 ﻿
-if (false)
+if (true)
 {
     // ==================================================
-    // normal 3-layer approch
+    // Normal 3-layer approch
     // ==================================================
 
-    var repository = new DataAccess.FakeUserRegistrationRepository();
+    // setup services
+    var dbContext = new DataAccess.DbContext();
 
-    var service = new BusinessLogic.UserRegistrationService(repository);
+    var userRegistrationRepository = new DataAccess.User.UserRegistrationRepository(dbContext);
+    var userRepository = new DataAccess.User.UserRepository(dbContext);
+    var userGroupRepository = new DataAccess.UserGroup.UserGroupRepository(dbContext);
 
-    string id = service.CreateUserRegistration("test@test.com", "abcd1234", "John", "Doe");
+    var userService = new BusinessLogic.User.UserService(userRegistrationRepository, userRepository);
+    var userGroupService = new BusinessLogic.UserGroup.UserGroupService(userGroupRepository);
 
-    service.ConfirmUserRegistration(id);
+    // execute
+    string registrationId = userService.CreateUserRegistration("test@test.com", "abcd1234", "John", "Doe");
+    string userId = userService.ConfirmUserRegistration(registrationId);
+
+    var userGroupId = userGroupService.CreateUserGroup("test group", "group created for testing");
+    userGroupService.AddMemberToUserGroup(userGroupId, userId);
 }
 else
 {
@@ -21,7 +30,7 @@ else
 
     var repository = new Infrastructure.FakeUserRegistrationRepository();
 
-    string id = new Application.RegisterNewUserUseCase(repository).Execute("test@test.com", "abcd1234", "John", "Doe");
+    string id = new Application.RegisterNewUserUseCase(repository).Execute("test@test.com", "abcd1234", "John", "Doe", Application.RegisterNewUserUseCase.Gender.Male);
 
     new Application.ConfirmUserRegistrationUseCase(repository).Execute(id);
 }

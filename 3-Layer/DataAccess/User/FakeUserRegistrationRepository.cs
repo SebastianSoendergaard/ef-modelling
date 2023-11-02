@@ -1,4 +1,4 @@
-﻿namespace DataAccess
+﻿namespace DataAccess.User
 {
     public class FakeUserRegistrationRepository : IUserRegistrationRepository
     {
