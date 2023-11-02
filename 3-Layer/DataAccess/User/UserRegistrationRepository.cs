@@ -22,6 +22,7 @@
 
         public void Update(UserRegistration userRegistration)
         {
+            _dbContext.UserRegistrations.Update(userRegistration);
             _dbContext.SaveChanges();
         }
     }
