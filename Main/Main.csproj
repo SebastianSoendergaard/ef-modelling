@@ -9,6 +9,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\3-Layer\BusinessLogic\BusinessLogic.csproj" />
+    <ProjectReference Include="..\Clean\UserGroup\UserGroup.Application\UserGroup.Application.csproj" />
+    <ProjectReference Include="..\Clean\UserGroup\UserGroup.Infrastructure\UserGroup.Infrastructure.csproj" />
     <ProjectReference Include="..\Clean\User\User.Application\User.Application.csproj" />
     <ProjectReference Include="..\Clean\User\User.Infrastructure\User.Infrastructure.csproj" />
   </ItemGroup>

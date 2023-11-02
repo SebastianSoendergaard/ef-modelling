@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace Domain.UserRegistration
+namespace User.Domain.Shared
 {
     public sealed class Password
     {

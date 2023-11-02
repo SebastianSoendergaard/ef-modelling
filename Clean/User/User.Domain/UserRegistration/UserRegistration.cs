@@ -1,6 +1,7 @@
-﻿using Domain.Shared;
+﻿using User.Domain.Shared;
+using User.Domain.User;
 
-namespace Domain.UserRegistration
+namespace User.Domain.UserRegistration
 {
     public sealed class UserRegistration
     {
@@ -31,7 +32,7 @@ namespace Domain.UserRegistration
             return userRegistration;
         }
 
-        public void Confirm()
+        public User.User Confirm()
         {
             if (UserRegistrationStatus == UserRegistrationStatus.Expired)
             {
@@ -42,6 +43,8 @@ namespace Domain.UserRegistration
             {
                 UserRegistrationStatus = UserRegistrationStatus.Confirmed;
             }
+
+            return User.User.Create(UserId.From(Id.Value), EmailAddress, Password, FullName, Gender);
         }
     }
 }

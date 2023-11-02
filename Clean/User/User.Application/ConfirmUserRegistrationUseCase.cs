@@ -1,24 +1,30 @@
-﻿using Domain.UserRegistration;
+﻿using User.Domain.User;
+using User.Domain.UserRegistration;
 
-namespace Application
+namespace User.Application
 {
     public class ConfirmUserRegistrationUseCase
     {
-        private readonly IUserRegistrationRepository _repository;
+        private readonly IUserRegistrationRepository _userRegistrationRepository;
+        private readonly IUserRepository _userRepository;
 
-        public ConfirmUserRegistrationUseCase(IUserRegistrationRepository repository)
+        public ConfirmUserRegistrationUseCase(IUserRegistrationRepository userRegistrationRepository, IUserRepository userRepository)
         {
-            _repository = repository;
+            _userRegistrationRepository = userRegistrationRepository;
+            _userRepository = userRepository;
         }
 
-        public void Execute(string id)
+        public string Execute(string id)
         {
             var userRegistrationId = UserRegistrationId.From(id);
-            var userRegistration = _repository.GetById(userRegistrationId);
+            var userRegistration = _userRegistrationRepository.GetById(userRegistrationId);
 
-            userRegistration.Confirm();
+            var user = userRegistration.Confirm();
 
-            _repository.Update(userRegistration);
+            _userRegistrationRepository.Update(userRegistration);
+            _userRepository.Add(user);
+
+            return user.Id.AsString();
         }
     }
 }

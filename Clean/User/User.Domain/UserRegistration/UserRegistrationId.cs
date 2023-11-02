@@ -1,4 +1,4 @@
-﻿namespace Domain.UserRegistration
+﻿namespace User.Domain.UserRegistration
 {
     public sealed class UserRegistrationId
     {

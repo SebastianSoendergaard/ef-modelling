@@ -1,4 +1,4 @@
-﻿namespace Domain.UserRegistration
+﻿namespace User.Domain.Shared
 {
     public sealed class EmailAddress
     {

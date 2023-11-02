@@ -1,6 +1,7 @@
-﻿using Domain.UserRegistration;
+﻿using User.Domain.Shared;
+using User.Domain.UserRegistration;
 
-namespace Application
+namespace User.Application
 {
     public class RegisterNewUserUseCase
     {
@@ -25,13 +26,13 @@ namespace Application
             return userRegistrationId.AsString();
         }
 
-        private Domain.UserRegistration.Gender ConvertGender(Gender gender)
+        private User.Domain.Shared.Gender ConvertGender(Gender gender)
         {
             return gender switch
             {
-                Gender.Unknown => Domain.UserRegistration.Gender.Unknown,
-                Gender.Male => Domain.UserRegistration.Gender.Male,
-                Gender.Female => Domain.UserRegistration.Gender.Female,
+                Gender.Unknown => User.Domain.Shared.Gender.Unknown,
+                Gender.Male => User.Domain.Shared.Gender.Male,
+                Gender.Female => User.Domain.Shared.Gender.Female,
                 _ => throw new NotImplementedException("Unknown gender type")
             };
         }

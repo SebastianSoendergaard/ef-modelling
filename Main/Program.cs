@@ -1,5 +1,5 @@
 ﻿
-if (true)
+if (false)
 {
     // ==================================================
     // Normal 3-layer approch
@@ -16,8 +16,8 @@ if (true)
     var userGroupService = new BusinessLogic.UserGroup.UserGroupService(userGroupRepository);
 
     // execute
-    string registrationId = userService.CreateUserRegistration("test@test.com", "abcd1234", "John", "Doe");
-    string userId = userService.ConfirmUserRegistration(registrationId);
+    string userRegistrationId = userService.CreateUserRegistration("test@test.com", "abcd1234", "John", "Doe");
+    string userId = userService.ConfirmUserRegistration(userRegistrationId);
 
     var userGroupId = userGroupService.CreateUserGroup("test group", "group created for testing");
     userGroupService.AddMemberToUserGroup(userGroupId, userId);
@@ -28,10 +28,15 @@ else
     // Clean approch with DDD
     // ==================================================
 
-    var repository = new Infrastructure.FakeUserRegistrationRepository();
+    // setup services
+    var userRegistrationRepository = new User.Infrastructure.FakeUserRegistrationRepository();
+    var userRepository = new User.Infrastructure.FakeUserRepository();
 
-    string id = new Application.RegisterNewUserUseCase(repository).Execute("test@test.com", "abcd1234", "John", "Doe", Application.RegisterNewUserUseCase.Gender.Male);
+    var registerNewUserUseCase = new User.Application.RegisterNewUserUseCase(userRegistrationRepository);
+    var confirmUserRegistrationUseCase = new User.Application.ConfirmUserRegistrationUseCase(userRegistrationRepository, userRepository);
 
-    new Application.ConfirmUserRegistrationUseCase(repository).Execute(id);
+    // execute
+    string userRegistrationId = registerNewUserUseCase.Execute("test@test.com", "abcd1234", "John", "Doe", User.Application.RegisterNewUserUseCase.Gender.Male);
+    string userId = confirmUserRegistrationUseCase.Execute(userRegistrationId);
 }
 

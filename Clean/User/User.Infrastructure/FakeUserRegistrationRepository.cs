@@ -1,6 +1,6 @@
-﻿using Domain.UserRegistration;
+﻿using User.Domain.UserRegistration;
 
-namespace Infrastructure
+namespace User.Infrastructure
 {
     public class FakeUserRegistrationRepository : IUserRegistrationRepository
     {
