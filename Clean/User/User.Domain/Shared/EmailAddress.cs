@@ -1,6 +1,8 @@
-﻿namespace User.Domain.Shared
+﻿using DddStuff;
+
+namespace User.Domain.Shared
 {
-    public sealed class EmailAddress
+    public sealed class EmailAddress : ValueObject
     {
         public string Value { get; private set; } = default!;
 

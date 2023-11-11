@@ -1,8 +1,9 @@
-﻿using System.Text.RegularExpressions;
+﻿using DddStuff;
+using System.Text.RegularExpressions;
 
 namespace User.Domain.Shared
 {
-    public sealed class Password
+    public sealed class Password : ValueObject
     {
         // TODO: password pattern requires dependency!?!
         public static string PasswordPattern = @"^(?=.*[0-9])(?=.*[a-zæøå])(.{8,})$";

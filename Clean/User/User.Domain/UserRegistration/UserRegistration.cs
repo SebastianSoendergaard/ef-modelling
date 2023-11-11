@@ -1,9 +1,10 @@
-﻿using User.Domain.Shared;
+﻿using DddStuff;
+using User.Domain.Shared;
 using User.Domain.User;
 
 namespace User.Domain.UserRegistration
 {
-    public sealed class UserRegistration
+    public sealed class UserRegistration : Aggregate<UserRegistrationId>
     {
         public UserRegistrationId Id { get; private set; }
         public UserRegistrationStatus UserRegistrationStatus { get; private set; } = default!;

@@ -1,6 +1,8 @@
-﻿namespace User.Domain.UserRegistration
+﻿using DddStuff;
+
+namespace User.Domain.UserRegistration
 {
-    public sealed class UserRegistrationStatus
+    public sealed class UserRegistrationStatus : ValueObject
     {
         public static UserRegistrationStatus WaitingForConfirmation = new(nameof(WaitingForConfirmation));
         public static UserRegistrationStatus Confirmed = new(nameof(Confirmed));

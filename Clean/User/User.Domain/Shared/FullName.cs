@@ -1,6 +1,8 @@
-﻿namespace User.Domain.Shared
+﻿using DddStuff;
+
+namespace User.Domain.Shared
 {
-    public sealed class FullName
+    public sealed class FullName : ValueObject
     {
         private FullName()
         {

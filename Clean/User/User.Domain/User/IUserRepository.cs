@@ -1,9 +1,8 @@
-﻿namespace User.Domain.User
+﻿using Shared;
+
+namespace User.Domain.User
 {
-    public interface IUserRepository
+    public interface IUserRepository : IRepository<User, UserId>
     {
-        void Add(User user);
-        void Update(User user);
-        User GetById(UserId id);
     }
 }

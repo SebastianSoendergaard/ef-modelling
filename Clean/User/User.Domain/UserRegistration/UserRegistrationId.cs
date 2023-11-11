@@ -1,17 +1,16 @@
-﻿namespace User.Domain.UserRegistration
-{
-    public sealed class UserRegistrationId
-    {
-        public Guid Value { get; private set; }
+﻿using Shared;
 
+namespace User.Domain.UserRegistration
+{
+    public sealed class UserRegistrationId : StronglyTypedValue<Guid>
+    {
         public string AsString()
         {
             return $"UR{Value:N}".ToUpper();
         }
 
-        private UserRegistrationId(Guid value)
+        private UserRegistrationId(Guid value) : base(value)
         {
-            Value = value;
         }
 
         public static UserRegistrationId New()

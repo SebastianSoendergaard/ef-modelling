@@ -1,9 +1,8 @@
-﻿namespace User.Domain.UserRegistration
+﻿using Shared;
+
+namespace User.Domain.UserRegistration
 {
-    public interface IUserRegistrationRepository
+    public interface IUserRegistrationRepository : IRepository<UserRegistration, UserRegistrationId>
     {
-        void Add(UserRegistration userRegistration);
-        void Update(UserRegistration userRegistration);
-        UserRegistration GetById(UserRegistrationId id);
     }
 }

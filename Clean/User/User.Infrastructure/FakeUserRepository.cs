@@ -1,24 +1,9 @@
-﻿using User.Domain.User;
+﻿using Shared;
+using User.Domain.User;
 
 namespace User.Infrastructure
 {
-    public class FakeUserRepository : IUserRepository
+    public class FakeUserRepository : FakeRepository<Domain.User.User, Domain.User.UserId>, IUserRepository
     {
-        private Dictionary<Guid, Domain.User.User> _users = new();
-
-        public void Add(Domain.User.User user)
-        {
-            _users.Add(user.Id.Value, user);
-        }
-
-        public Domain.User.User GetById(UserId id)
-        {
-            return _users[id.Value];
-        }
-
-        public void Update(Domain.User.User user)
-        {
-            _users[user.Id.Value] = user;
-        }
     }
 }
