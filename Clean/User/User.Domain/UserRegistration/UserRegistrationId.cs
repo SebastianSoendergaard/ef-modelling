@@ -18,6 +18,11 @@ namespace User.Domain.UserRegistration
             return new UserRegistrationId(Guid.NewGuid());
         }
 
+        public static UserRegistrationId From(Guid id)
+        {
+            return new UserRegistrationId(id);
+        }
+
         public static UserRegistrationId From(string id)
         {
             if (!id.StartsWith("UR") || !Guid.TryParse(id.AsSpan(2), out var result))

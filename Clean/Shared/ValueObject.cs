@@ -1,4 +1,4 @@
-﻿namespace DddStuff
+﻿namespace Shared
 {
     public abstract class ValueObject
     {

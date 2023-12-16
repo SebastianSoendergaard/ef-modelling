@@ -1,4 +1,4 @@
-﻿using DddStuff;
+﻿using Shared;
 using User.Domain.Shared;
 using User.Domain.User;
 
@@ -6,7 +6,7 @@ namespace User.Domain.UserRegistration
 {
     public sealed class UserRegistration : Aggregate<UserRegistrationId>
     {
-        public UserRegistrationId Id { get; private set; }
+        public UserRegistrationId Id { get; private set; } = default!;
         public UserRegistrationStatus UserRegistrationStatus { get; private set; } = default!;
         public EmailAddress EmailAddress { get; private set; } = default!;
         public FullName FullName { get; private set; } = default!;

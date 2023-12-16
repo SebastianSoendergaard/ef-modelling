@@ -8,6 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.13">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\3-Layer\BusinessLogic\BusinessLogic.csproj" />
     <ProjectReference Include="..\Clean\UserGroup\UserGroup.Application\UserGroup.Application.csproj" />
     <ProjectReference Include="..\Clean\UserGroup\UserGroup.Infrastructure\UserGroup.Infrastructure.csproj" />

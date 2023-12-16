@@ -2,21 +2,30 @@
 
 namespace User.Infrastructure
 {
-    public class UserRegistrationRepository : IUserRegistrationRepository
+    internal class UserRegistrationRepository : IUserRegistrationRepository
     {
+        private readonly UserDbContext _dbContext;
+
+        public UserRegistrationRepository(UserDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
         public void Add(UserRegistration userRegistration)
         {
-            throw new NotImplementedException();
+            _dbContext.UserRegistrations.Add(userRegistration);
+            _dbContext.SaveChanges();
         }
 
         public void Update(UserRegistration userRegistration)
         {
-            throw new NotImplementedException();
+            _dbContext.UserRegistrations.Update(userRegistration);
+            _dbContext.SaveChanges();
         }
 
         public UserRegistration GetById(UserRegistrationId id)
         {
-            throw new NotImplementedException();
+            return _dbContext.UserRegistrations.Single(x => x.Id == id);
         }
     }
 }

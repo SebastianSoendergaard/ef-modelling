@@ -3,7 +3,7 @@ using User.Domain.UserRegistration;
 
 namespace User.Infrastructure
 {
-    public class FakeUserRegistrationRepository : FakeRepository<UserRegistration, UserRegistrationId>, IUserRegistrationRepository
+    internal class FakeUserRegistrationRepository : FakeRepository<UserRegistration, UserRegistrationId>, IUserRegistrationRepository
     {
     }
 }

@@ -1,4 +1,4 @@
-﻿using DddStuff;
+﻿using Shared;
 using User.Domain.Shared;
 
 namespace User.Domain.User

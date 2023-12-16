@@ -1,5 +1,4 @@
-﻿
-if (false)
+﻿if (false)
 {
     // ==================================================
     // Normal 3-layer approch
@@ -29,8 +28,9 @@ else
     // ==================================================
 
     // setup services
-    var userRegistrationRepository = new User.Infrastructure.FakeUserRegistrationRepository();
-    var userRepository = new User.Infrastructure.FakeUserRepository();
+    var userRepositoryFactory = new User.Infrastructure.RepositoryFactory(true);
+    var userRegistrationRepository = userRepositoryFactory.CreateUserRegistrationRepository();
+    var userRepository = userRepositoryFactory.CreateUserRepository();
 
     var registerNewUserUseCase = new User.Application.RegisterNewUserUseCase(userRegistrationRepository);
     var confirmUserRegistrationUseCase = new User.Application.ConfirmUserRegistrationUseCase(userRegistrationRepository, userRepository);

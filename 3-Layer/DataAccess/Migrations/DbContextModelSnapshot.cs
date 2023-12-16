@@ -39,7 +39,7 @@ namespace DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("3layer.users");
+                    b.ToTable("3layer.users", (string)null);
                 });
 
             modelBuilder.Entity("DataAccess.User.UserRegistration", b =>
@@ -67,7 +67,7 @@ namespace DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("3layer.user_registrations");
+                    b.ToTable("3layer.user_registrations", (string)null);
                 });
 
             modelBuilder.Entity("DataAccess.UserGroup.UserGroup", b =>
@@ -86,7 +86,7 @@ namespace DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("3layer.user_groups");
+                    b.ToTable("3layer.user_groups", (string)null);
                 });
 
             modelBuilder.Entity("DataAccess.UserGroup.UserGroupMember", b =>
@@ -106,7 +106,7 @@ namespace DataAccess.Migrations
 
                     b.HasIndex("UserGroupId");
 
-                    b.ToTable("3layer.user_group_members");
+                    b.ToTable("3layer.user_group_members", (string)null);
                 });
 
             modelBuilder.Entity("DataAccess.UserGroup.UserGroupMember", b =>

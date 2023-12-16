@@ -1,4 +1,4 @@
-﻿using DddStuff;
+﻿using Shared;
 using System.Text.RegularExpressions;
 
 namespace User.Domain.Shared

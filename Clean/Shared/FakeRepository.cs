@@ -1,8 +1,6 @@
-﻿using DddStuff;
-
-namespace Shared
+﻿namespace Shared
 {
-    public abstract class FakeRepository<TAggregate, TId> : IRepository<TAggregate, TId> where TAggregate : Aggregate<TId> where TId : ValueObject
+    public abstract class FakeRepository<TAggregate, TId> : IRepository<TAggregate, TId> where TAggregate : Aggregate<TId> where TId : IStronglyTypedValue
     {
         private Dictionary<TId, TAggregate> _aggregates = new();
 

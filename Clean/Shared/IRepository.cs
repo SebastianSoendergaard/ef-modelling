@@ -1,8 +1,6 @@
-﻿using DddStuff;
-
-namespace Shared
+﻿namespace Shared
 {
-    public interface IRepository<TAggregate, TId> where TAggregate : Aggregate<TId> where TId : StronglyTypedValue<object>
+    public interface IRepository<TAggregate, TId> where TAggregate : Aggregate<TId> where TId : IStronglyTypedValue
     {
         void Add(TAggregate aggregate);
         void Update(TAggregate aggregate);

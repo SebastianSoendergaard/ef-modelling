@@ -4,7 +4,7 @@ namespace DataAccess
 {
     public class DbContext : Microsoft.EntityFrameworkCore.DbContext
     {
-        private const string DbPath = "c:\\temp\\ef-modelling\\3-layer-data.db";
+        private const string DbPath = "c:\\temp\\ef-modelling\\data.db";
 
         public DbSet<User.UserRegistration> UserRegistrations { get; set; }
         public DbSet<User.User> Users { get; set; }

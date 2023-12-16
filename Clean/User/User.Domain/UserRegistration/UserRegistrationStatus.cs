@@ -1,4 +1,4 @@
-﻿using DddStuff;
+﻿using Shared;
 
 namespace User.Domain.UserRegistration
 {
